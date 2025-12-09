@@ -1,0 +1,30 @@
+name: Manual Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "環境を選んでください"
+        required: true
+        default: "development"
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+      version:
+        description: "バージョンを入力してください"
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show parameters
+        run: |
+          echo "Deploy environment: ${{ github.event.inputs.environment }}"
+          echo "Deploy version: ${{ github.event.inputs.version }}"
