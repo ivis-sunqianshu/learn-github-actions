@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "lint": "echo 'No lint configured yet'",
     "test": "jest"
   },
   "keywords": [],
