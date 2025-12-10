@@ -1,4 +1,4 @@
-name: Manual Deploy
+name: Manual Trigger Workflow
 
 on:
   workflow_dispatch:

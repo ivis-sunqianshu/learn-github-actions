@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CI with Push Trigger
 
 on:
   push:
