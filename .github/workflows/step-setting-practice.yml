@@ -55,3 +55,15 @@ jobs:
           echo "Name: ${{ steps.set-values.outputs.name }}"
           echo "Age: ${{ steps.set-values.outputs.age }}"
           echo "Location: ${{ steps.set-values.outputs.location }}"
+
+  dynamic-values:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate timestamp
+        id: timestamp
+        run: echo "time=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_OUTPUT
+
+      - name: Create file with timestamp
+        run: |
+          echo "Creating file at ${{ steps.timestamp.outputs.time }}"
+          touch "backup_${{ steps.timestamp.outputs.time }}.txt"
