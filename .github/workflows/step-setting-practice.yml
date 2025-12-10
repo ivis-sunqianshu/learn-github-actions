@@ -1,0 +1,16 @@
+name: Step Setting Practice # ステップ設定の練習
+on:
+  push:
+    paths:
+      - ".github/workflows/step-setting-practice.yml"
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: fist step
+        id: example
+        env:
+          MY_VARIABLE: my-value
+        run: |
+          echo "This is the first step"
+          echo "MY_VARIABLE is $MY_VARIABLE"
