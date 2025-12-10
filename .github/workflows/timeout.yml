@@ -12,7 +12,10 @@ jobs:
   timeout-test:
     runs-on: ubuntu-latest
     steps:
-      - name: ${ github.event.inputs.seconds } 秒後にタイムアウト
+      - name: $${{ github.event.inputs.seconds }}秒後にタイムアウト
         run: |
           echo "このジョブは ${{ github.event.inputs.seconds }} 秒後にタイムアウトします"
-          sleep ${{ github.event.inputs.seconds }}
+          timeout ${{ github.event.inputs.seconds }} bash -c "
+            echo '実行開始…'
+            sleep 9999
+          "
