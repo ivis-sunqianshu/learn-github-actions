@@ -42,3 +42,9 @@ jobs:
         run: |
           import sys
           print(f"Python version: {sys.version}")
+
+      - uses: actions/checkout@v4
+        with:
+          repository: "octocat/hello-world"
+          ref: "main"
+          path: "source-dir"
