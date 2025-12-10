@@ -2,23 +2,19 @@ name: External Trigger Workflow
 
 on:
   repository_dispatch:
-    types: [build, deploy]
+    types: [deploy]
 
 jobs:
-  build_job:
-    if: ${{ github.event.action == 'build' }}
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Build step
-        run: echo "🔨 Running build job (trigger build)"
+      - name: Check event data
+        run: |
+          echo "受信したイベントタイプ: ${{ github.event.action }}"
+          echo "環境: ${{ github.event.client_payload.environment }}"
+          echo "バージョン: ${{ github.event.client_payload.version }}"
 
-  deploy_job:
-    if: ${{ github.event.action == 'deploy' }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Deploy step
-        run: echo "🚀 Running deploy job (trigger deploy)"
+      - name: Deploy application
+        if: github.event.client_payload.environment == 'production'
+        run: |
+          echo "本番環境にデプロイを実行します"
