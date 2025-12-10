@@ -4,13 +4,21 @@ on:
     paths:
       - ".github/workflows/step-setting-practice.yml"
 jobs:
-  example-job:
+  multiple-steps:
     runs-on: ubuntu-latest
     steps:
-      - name: fist step
-        id: example
+      - name: First step
+        id: step1
+        run: echo "Running first step"
+
+      - name: Second step
+        id: step2
         env:
-          MY_VARIABLE: my-value
+          STEP_INFO: "Second step info"
         run: |
-          echo "This is the first step"
-          echo "MY_VARIABLE is $MY_VARIABLE"
+          echo "Running second step"
+          echo "Environment variable: $STEP_INFO"
+
+      - name: Third step
+        id: step3
+        run: echo "Running third step"
