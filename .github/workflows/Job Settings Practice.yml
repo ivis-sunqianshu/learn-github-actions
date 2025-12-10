@@ -48,7 +48,7 @@ jobs:
         run: echo "ジョブが失敗しました。確認してください。"
 
   deploy:
-    needs: test
+    needs: report-success
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
