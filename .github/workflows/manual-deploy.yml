@@ -16,6 +16,12 @@ on:
         description: "バージョンを入力してください"
         required: true
         type: string
+      environment_input:
+        description: "環境入力"
+        type: environment
+      number_input:
+        description: "数値入力"
+        type: number
 
 jobs:
   deploy:
