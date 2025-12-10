@@ -28,6 +28,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: テスト（ダミー）
         run: echo "テスト成功"
+  report-success:
+    if: success()
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: 成功レポート（ダミー）
+        run: echo "すべてのジョブが成功しました！"
 
   deploy:
     needs: test
