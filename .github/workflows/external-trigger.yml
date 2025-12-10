@@ -1,0 +1,24 @@
+name: External Trigger Workflow
+
+on:
+  repository_dispatch:
+    types: [build, deploy]
+
+jobs:
+  build_job:
+    if: ${{ github.event.action == 'build' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build step
+        run: echo "🔨 Running build job (trigger build)"
+
+  deploy_job:
+    if: ${{ github.event.action == 'deploy' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Deploy step
+        run: echo "🚀 Running deploy job (trigger deploy)"
