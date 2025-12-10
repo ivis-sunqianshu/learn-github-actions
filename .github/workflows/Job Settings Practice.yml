@@ -2,8 +2,8 @@ name: Job Settings Practice # ワークフロー名
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - ".github/workflows/Job Settings Practice.yml"
 
 jobs:
   lint:

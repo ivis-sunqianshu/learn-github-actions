@@ -2,7 +2,8 @@ name: Node.js CI with Push Trigger
 
 on:
   push:
-    branches: [main]
+    paths:
+      - ".github/workflows/push-trigger.yml"
 
 jobs:
   build:

@@ -2,7 +2,8 @@ name: Container Practice # コンテナでジョブ実行の練習
 
 on:
   push:
-    branches: [main]
+    paths:
+      - ".github/workflows/container-practice.yml"
 
 jobs:
   run-in-container:

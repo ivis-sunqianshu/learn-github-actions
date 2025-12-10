@@ -1,0 +1,18 @@
+name: timeout test
+on:
+  workflow_dispatch:
+    inputs:
+      seconds:
+        description: "タイムアウト秒数"
+        required: true
+        default: "1"
+        type: string
+
+jobs:
+  timeout-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ${ github.event.inputs.seconds } 秒後にタイムアウト
+        run: |
+          echo "このジョブは ${{ github.event.inputs.seconds }} 秒後にタイムアウトします"
+          sleep ${{ github.event.inputs.seconds }}
