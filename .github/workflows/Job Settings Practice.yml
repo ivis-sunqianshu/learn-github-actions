@@ -27,7 +27,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: テスト（ダミー）
-        run: echo "テスト成功"
+        run: exit 1
 
   report-success:
     if: success()
