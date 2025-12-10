@@ -1,8 +1,7 @@
 name: Step Setting Practice # ステップ設定の練習
 on:
-  push:
-    paths:
-      - ".github/workflows/step-setting-practice.yml"
+  workflow_dispatch:
+
 jobs:
   working-directory:
     runs-on: ubuntu-latest
