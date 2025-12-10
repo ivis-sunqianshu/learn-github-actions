@@ -24,3 +24,21 @@ jobs:
           mkdir build
           cd build
           echo "Current directory: $(pwd)"
+
+      - name: Run with bash
+        shell: bash
+        run: |
+          echo "Running with bash"
+          echo "Current shell: $SHELL"
+
+      - name: Run with sh
+        shell: sh
+        run: |
+          echo "Running with sh"
+          echo "Current directory: $(pwd)"
+
+      - name: Run with python
+        shell: python
+        run: |
+          import sys
+          print(f"Python version: {sys.version}")
