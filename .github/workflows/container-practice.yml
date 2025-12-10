@@ -1,0 +1,30 @@
+name: Container Practice # コンテナでジョブ実行の練習
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  run-in-container:
+    name: Node コンテナ内で実行
+    runs-on: ubuntu-latest # ホストマシン
+    container:
+      image: node:18 # このジョブは node:18 コンテナ内で実行される
+
+    steps:
+      - uses: actions/checkout@v4 # リポジトリ取得（必須）
+
+      - name: Node バージョン確認
+        run: node -v # コンテナ内の node を確認
+
+      - name: 依存関係をインストール
+        run: npm install
+
+      - name: Lint 実行
+        run: npm run lint
+
+      - name: テスト実行
+        run: npm test
+
+      - name: ビルド実行
+        run: npm run build
