@@ -9,6 +9,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Setup environment
         run: ./setup.sh
 
@@ -16,6 +17,7 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Build application
         run: npm run build
 
@@ -23,6 +25,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Run tests
         run: npm test
 
@@ -30,5 +33,6 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Deploy application
         run: npm run deploy
