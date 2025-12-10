@@ -4,21 +4,16 @@ on:
     paths:
       - ".github/workflows/step-setting-practice.yml"
 jobs:
-  multiple-steps:
+  working-directory:
     runs-on: ubuntu-latest
     steps:
-      - name: First step
-        id: step1
-        run: echo "Running first step"
+      - name: First step in root
+        run: pwd
 
-      - name: Second step
-        id: step2
-        env:
-          STEP_INFO: "Second step info"
-        run: |
-          echo "Running second step"
-          echo "Environment variable: $STEP_INFO"
+      - name: Second step in src directory
+        working-directory: ./src
+        run: pwd
 
-      - name: Third step
-        id: step3
-        run: echo "Running third step"
+      - name: Third step in test directory
+        working-directory: ./test
+        run: pwd
