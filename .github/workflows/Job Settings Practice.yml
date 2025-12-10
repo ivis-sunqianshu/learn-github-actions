@@ -1,0 +1,58 @@
+name: Job Settings Practice # ワークフロー名
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install:
+    name: Install dependencies
+    runs-on: ubuntu-latest
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+      - name: 依存関係をインストール
+        run: npm install
+
+  lint:
+    name: Lint code
+    runs-on: ubuntu-latest
+    needs: install # install ジョブが完了してから実行
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+      - name: Linter を実行
+        run: npm run lint
+
+  build:
+    name: Build application
+    runs-on: ubuntu-latest
+    needs: [install, lint] # install と lint の両方が成功すると実行
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+      - name: アプリケーションをビルド
+        run: npm run build
+
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    needs: build # build が完了してから実行
+    continue-on-error: false # false の場合、失敗するとワークフロー全体が停止
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+      - name: テストを実行
+        run: npm test
+
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    needs: [build, test] # build と test の両方が完了後に実行
+    if: ${{ success() }} # すべて成功した場合のみデプロイする
+    steps:
+      - name: リポジトリをチェックアウト
+        uses: actions/checkout@v4
+      - name: デプロイ処理（ダミー）
+        run: echo "🚀 Deploying application..."
