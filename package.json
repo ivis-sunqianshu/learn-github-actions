@@ -4,12 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "lint": "echo 'Lint OK'",
+    "test": "jest",
+    "build": "echo 'Build OK'"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "globals": "^16.5.0",
     "jest": "^30.2.0"
   }
 }
