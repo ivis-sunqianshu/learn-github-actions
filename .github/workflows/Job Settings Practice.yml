@@ -6,51 +6,23 @@ on:
       - main
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4 # リポジトリを取得
-      - name: セットアップ（ダミー）
-        run: echo "環境セットアップ完了"
-
-  build:
-    needs: setup
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: ビルド処理（ダミー）
-        run: echo "ビルド完了"
+      - name: Run linting
+        run: npm run lint
 
   test:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: テスト（ダミー）
-        run: exit 1
+      - name: Run tests
+        run: npm test
 
-  report-success:
-    if: success()
-    needs: test
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: 成功レポート（ダミー）
-        run: echo "すべてのジョブが成功しました！"
-
-  report-failure:
-    if: failure()
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: 失敗レポート（ダミー）
-        run: echo "ジョブが失敗しました。確認してください。"
-
-  deploy:
-    needs: report-success
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: デプロイ（ダミー）
-        run: echo "デプロイ実行"
+      - name: Build application
+        run: npm run build
