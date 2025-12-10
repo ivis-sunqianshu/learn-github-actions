@@ -17,3 +17,10 @@ jobs:
       - name: Third step in test directory
         working-directory: ./test
         run: pwd
+
+      - name: Multiple commands
+        run: |
+          echo "First command"
+          mkdir build
+          cd build
+          echo "Current directory: $(pwd)"
