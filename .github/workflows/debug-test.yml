@@ -1,0 +1,24 @@
+name: debug-test
+on: workflow_dispatch
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Print environment variables
+        run: env
+
+      - name: List directory
+        run: ls -al
+
+      - name: Show runner paths
+        run: |
+          echo "HOME=$HOME"
+          echo "GITHUB_WORKSPACE=$GITHUB_WORKSPACE"
+          echo "RUNNER_TEMP=$RUNNER_TEMP"
+
+      - name: Print bash execution info
+        run: set -x
