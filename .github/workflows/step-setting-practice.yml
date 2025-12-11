@@ -100,3 +100,16 @@ jobs:
         run: |
           echo "Performing cleanup"
           echo "This runs regardless of previous step results"
+
+  debug-example:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show debug information
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Repository: ${{ github.repository }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Event: ${{ github.event_name }}"
