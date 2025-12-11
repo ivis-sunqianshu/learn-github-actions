@@ -67,3 +67,36 @@ jobs:
         run: |
           echo "Creating file at ${{ steps.timestamp.outputs.time }}"
           touch "backup_${{ steps.timestamp.outputs.time }}.txt"
+
+  basic-error-handling:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step that might fail
+        continue-on-error: true
+        run: |
+          echo "Attempting risky operation"
+          exit 1
+
+      - name: Next step
+        run: echo "This step will run even if the previous step failed"
+
+  error-response:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Main process
+        id: main
+        run: |
+          echo "Running main process"
+          exit 1
+
+      - name: Error notification
+        if: failure()
+        run: |
+          echo "Main process failed"
+          echo "Sending notification to team"
+
+      - name: Cleanup
+        if: always()
+        run: |
+          echo "Performing cleanup"
+          echo "This runs regardless of previous step results"
