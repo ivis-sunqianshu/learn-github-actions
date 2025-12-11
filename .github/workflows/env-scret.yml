@@ -1,0 +1,14 @@
+name: Env and Secret Workflow
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Access database
+        env:
+          DB_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+        run: |
+          echo "Connecting to database using secure password"
+          ./connect-db.sh -p $DB_PASSWORD
