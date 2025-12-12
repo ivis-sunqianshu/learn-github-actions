@@ -23,19 +23,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: List directory contents
-        shell: bash
-        run: |
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            dir
-          else
-            ls -la
-          fi
+      - name: Linux build
+        if: runner.os == 'Linux'
+        run: make
 
-      - name: Create directory
-        run: |
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            mkdir test_dir
-          else
-            mkdir -p test_dir
-          fi
+      - name: Windows build
+        if: runner.os == 'Windows'
+        run: ./build.ps1
+
+      - name: macOS build
+        if: runner.os == 'macOS'
+        run: make
