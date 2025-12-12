@@ -5,11 +5,13 @@ on:
 
 jobs:
   example-matrix:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       max-parallel: 2
       matrix:
-        environment: [development, staging, production]
+        os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Print current environment
-        run: echo "Current environment is ${{ matrix.environment }}"
+        run: |
+          echo "Running on ${{ runner.os }}"
+          echo "Architecture: ${{ runner.arch }}"
