@@ -1,0 +1,14 @@
+name: Matrix Practice
+
+on:
+  workflow_dispatch: # 手動実行用トリガー
+
+jobs:
+  example-matrix:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [development, staging, production]
+    steps:
+      - name: Print current environment
+        run: echo "Current environment is ${{ matrix.environment }}"
