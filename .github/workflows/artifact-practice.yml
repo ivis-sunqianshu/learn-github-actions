@@ -1,0 +1,39 @@
+name: artifact-practice
+
+on:
+  workflow_dispatch: # 手動実行用トリガー
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: チェックアウト
+        uses: actions/checkout@v4
+
+      - name: サンプルファイル作成
+        run: |
+          mkdir -p artifacts
+          echo "hello artifact" > artifacts/example.txt
+          echo "second file" > artifacts/another.txt
+
+      - name: アーティファクトをアップロード
+        uses: actions/upload-artifact@v4
+        with:
+          name: sample-artifact # アーティファクト名
+          path: artifacts/ # アップロードするフォルダ
+
+  download-and-show:
+    needs: build-and-upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: アーティファクトをダウンロード
+        uses: actions/download-artifact@v4
+        with:
+          name: sample-artifact # 上と同じ名前
+          path: downloaded # 展開先ディレクトリ
+
+      - name: 中身を確認
+        run: |
+          pwd
+          ls -R
+          cat downloaded/example.txt
