@@ -39,6 +39,7 @@ jobs:
       matrix:
         environment: [development, staging]
         node-version: [18, 20]
+        # includeセクションで特定の組み合わせを追加
         include:
           - environment: production
             node-version: 20
@@ -49,6 +50,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+      # deployステップはneeds-approvalがtrueの場合にのみ手動承認後に実行
       - name: Deploy application
         if: ${{ !matrix.needs-approval || github.event_name == 'workflow_dispatch' }}
         env:
