@@ -1,0 +1,15 @@
+name: Hello JS Action
+description: JS action with input and output
+
+inputs:
+  name:
+    description: "Name to greet"
+    required: true
+
+outputs:
+  message:
+    description: "Greeting message"
+
+runs:
+  using: node20
+  main: index.js

@@ -1,0 +1,13 @@
+name: greetings
+on: workflow_dispatch
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/hello-js-action
+        id: hello
+        with:
+          name: sun
+
+      - run: echo "${{ steps.hello.outputs.message }}"
