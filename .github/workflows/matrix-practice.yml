@@ -43,3 +43,16 @@ jobs:
           - environment: production
             node-version: 20
             needs-approval: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Deploy application
+        if: ${{ !matrix.needs-approval || github.event_name == 'workflow_dispatch' }}
+        env:
+          DEPLOY_ENV: ${{ matrix.environment }}
+        run: |
+          echo "Deploying to ${{ matrix.environment }} with Node.js ${{ matrix.node-version }}"
+          ./deploy.sh
