@@ -32,3 +32,14 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm test
+
+  include:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [development, staging]
+        node-version: [18, 20]
+        include:
+          - environment: production
+            node-version: 20
+            needs-approval: true
