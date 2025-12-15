@@ -1,0 +1,15 @@
+name: "My Docker Action"
+description: "Example Docker container action"
+inputs:
+  message:
+    description: "Message to process"
+    required: true
+    default: "Hello World"
+outputs:
+  result:
+    description: "The processed message"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.message }}

@@ -1,0 +1,19 @@
+name: Run Docker Action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-docker-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run my docker action
+        id: docker_action
+        uses: ./.github/actions/my-docker-action
+        with:
+          message: "Hello from workflow"
+
+      - name: Show result
+        run: echo "${{ steps.docker_action.outputs.result }}"
