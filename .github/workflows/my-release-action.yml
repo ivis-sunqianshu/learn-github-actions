@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Use my action
-        uses: ivis-sunqianshu/learn-github-actions/@v1.0.5
+        uses: ivis-sunqianshu/learn-github-actions/@v1.0.6
         with:
           node-version: "20"
           python-version: "3.11"
