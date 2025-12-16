@@ -1,0 +1,16 @@
+name: Test published action
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use my action
+        uses: ivis-sunqianshu/learn-github-actions/@v1.0.5
+        with:
+          node-version: "20"
+          python-version: "3.11"
