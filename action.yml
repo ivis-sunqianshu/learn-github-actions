@@ -1,5 +1,9 @@
 name: "Setup Development Environment"
 description: "Sets up Node.js and Python environments"
+branding:
+  icon: terminal
+  color: gray-dark
+
 inputs:
   node-version:
     description: "Version of Node.js to use"
